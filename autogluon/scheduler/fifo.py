@@ -16,9 +16,7 @@ from .scheduler import TaskScheduler
 from ..searcher.searcher_factory import searcher_factory
 from ..searcher import BaseSearcher
 from .reporter import DistStatusReporter, FakeReporter
-from ..utils import DeprecationHelper, in_ipynb
-
-from tqdm.auto import tqdm
+from ..utils import DeprecationHelper, tqdm
 
 __all__ = ['FIFOScheduler']
 

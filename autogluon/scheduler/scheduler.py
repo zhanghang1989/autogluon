@@ -89,10 +89,16 @@ class TaskScheduler(object):
     def run_job(self, task):
         """Run a training task to the scheduler (Sync).
         """
+        job = self.async_run_job(task)
+        return job.result()
+
+    def async_run_job(self, task):
+        """Run a training task to the scheduler (Sync).
+        """
         cls = TaskScheduler
         cls.RESOURCE_MANAGER._request(task.resources)
         job = cls._start_distributed_job(task, cls.RESOURCE_MANAGER, self.env_sem)
-        return job.result()
+        return job
 
     @staticmethod
     def _start_distributed_job(task, resource_manager, env_sem):
